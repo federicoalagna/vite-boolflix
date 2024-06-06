@@ -1,7 +1,17 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
+
+<script>
+import Search from './components/Search.vue';
+
+export default {
+  components: {
+    Search,
+  },
+};
 </script>
 
 <template>
-
+  
+    
+    <Search />
+  
 </template>
