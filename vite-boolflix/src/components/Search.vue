@@ -15,11 +15,15 @@ export default {
         store.searchMovies(query.value);
       }
     };
+    const getFlagUrl = (languageCode) => {
+      return `/flags/it.svg${languageCode}.svg`;
+    };
 
     return {
       query,
       store,
       search,
+      getFlagUrl,
     };
   },
 };
@@ -42,7 +46,22 @@ export default {
     <ul v-if="store.movies.length">
       <li v-for="movie in store.movies" :key="movie.id">
         <h3>{{ movie.title }} ({{ movie.original_title }})</h3>
-        <p>Lingua: {{ movie.original_language }}</p>
+        Lingua: 
+          <img 
+            v-if="movie.original_language === 'it'" 
+            src="/flags/it.svg" 
+            alt="Italian Flag" 
+            class="flag" 
+          />
+          <img 
+            v-else-if="movie.original_language === 'en'" 
+            src="/flags/en.svg" 
+            alt="UK Flag" 
+            class="flag" 
+          />
+          <span v-else>
+            {{ movie.original_language }}
+          </span>
         <p>Voto: {{ movie.vote_average }}</p>
       </li>
     </ul>
@@ -70,5 +89,10 @@ ul {
 
 li {
   margin-bottom: 16px;
+}
+.flag {
+  width: 24px;
+  height: auto; 
+  display: inline-block;
 }
 </style>
