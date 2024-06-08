@@ -1,0 +1,20 @@
+@use './variables' as *;
+
+.header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+body {
+    background-color: rgb(36, 34, 34);
+    font-family: 'Roboto', sans-serif;
+    color: rgb(198, 198, 198);
+}
+
+.big {
+  font-size: 50px;
+  font-weight: bold;
+  color: white;
+}
+
