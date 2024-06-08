@@ -12,6 +12,10 @@ export default {
       }
     };
 
+    const selectCategory = (category) => {
+      store.selectCategory(category);
+    };
+
     const getMovieImageUrl = (path) => {
       return path ? `https://image.tmdb.org/t/p/w342${path}` : 'path/to/default/image.jpg';
     };
@@ -26,6 +30,7 @@ export default {
       search,
       getMovieImageUrl,
       getTvShowImageUrl,
+      selectCategory,
     };
   },
 };
@@ -35,9 +40,20 @@ export default {
 
 
 <template>
-  <header>
-<div> <img class="logo" src="../../public/logo/logo.png" alt="Titolo" /> </div>
-<div class="search">
+  <header class="header">
+
+
+<div class="categories">
+      <button @click="selectCategory('action')">Azione</button>
+      <button @click="selectCategory('comedy')">Commedia</button>
+
+      <button @click="selectCategory('horror')">Horror</button>
+
+      <button class="altro" @click="selectCategory('horror')">Altro..</button>
+     
+    </div>
+    <div> <img class="logo" src="../../public/logo/logo.png" alt="Titolo" /> </div>
+    <div class="search">
     <!-- Barra di ricerca -->
     <input v-model="query" @keyup.enter="search" placeholder="Film, Show, Serie TV..." />
     <button class="custom-button" @click="search">Cerca</button>
@@ -46,8 +62,6 @@ export default {
     <div v-if="store.loading">Caricamento...</div>
     <div v-if="store.error">{{ store.error }}</div>
 </div>
-
- 
   </header>
 
 </template>
@@ -86,6 +100,31 @@ input {
 }
 
 .logo {
-  width: 250px;
+  width: 200px;
+
+}
+
+.categories {
+  display: flex;
+  gap: 8px;
+  margin-left: 12px;
+}
+
+.categories button {
+  padding: 8px;
+  background: none;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+ .altro {
+ color: #c30a0a;
+}
+.categories button:hover {
+  background-color: #dd0e0e93;
+}
+.header {
+  margin-top: 20px;
 }
 </style>

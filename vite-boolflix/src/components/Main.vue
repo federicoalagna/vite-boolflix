@@ -152,7 +152,12 @@ h3 {
   width: 200px; 
 padding: 10px;
 height: 300px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.523);
+  transition: box-shadow 0.3s ease; 
+}
 
+.poster:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); 
 }
 
 .flag {

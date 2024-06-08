@@ -11,6 +11,7 @@ export const store = reactive({
   tvShows: [],
   loading: false,
   error: null,
+  
 
   async searchMoviesAndTvShows(query) {
     this.loading = true;
