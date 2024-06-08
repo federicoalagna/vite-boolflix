@@ -37,13 +37,18 @@ export default {
 
 
     <!-- Lista dei risultati per i film -->
-    <div class="big">Film</div>
-    <ul v-if="store.movies.length">
-  <li v-for="movie in store.movies" :key="movie.id">
+    <div class="big results">FILM</div>
+
+    <ul class="movies-list" v-if="store.movies.length">
+  <li v-for="movie in store.movies" :key="movie.id" class="movie">
+    <div class="movie-wrapper">
+
+
+  
     <img :src="getMovieImageUrl(movie.poster_path)" alt="Copertina di {{ movie.title }}" class="poster" />
     <div class="movie-details">
       <h3>{{ movie.title }} ({{ movie.original_title }})</h3>
-      <p>
+      <p class="info hidden">
         Lingua: 
         <img 
           v-if="movie.original_language === 'it'" 
@@ -60,9 +65,9 @@ export default {
         <span v-else>
           {{ movie.original_language }}
         </span>
-      </p>
+      </p> 
       <!-- condizione per verificare se "vote_average" è definito -->
-      <p v-if="movie.vote_average !== undefined" class="stars">
+      <p v-if="movie.vote_average !== undefined" class="stars hidden">
         Voto:
         <!-- Calcolo del numero di stelle piene -->
         <i v-for="i in Math.ceil(movie.vote_average / 2)" class="fas fa-star"></i>
@@ -70,11 +75,12 @@ export default {
         <i v-for="i in Math.ceil((10 - movie.vote_average) / 2)" class="far fa-star"></i>
       </p>
     </div>
+    </div>
   </li>
 </ul>
-
+<hr>
     <!-- Lista dei risultati per le serie TV -->
-    <div class="big">Serie TV</div>
+    <div class="big">SERIE TV</div>
     <ul v-if="store.tvShows.length">
   <li v-for="show in store.tvShows" :key="show.id">
     <img :src="getTvShowImageUrl(show.poster_path)" alt="Copertina di {{ show.name }}" class="poster" />
@@ -135,6 +141,8 @@ h3 {
 .poster {
   width: 100px; 
   margin-right: 16px;
+  position: relative;
+  height: auto;
 }
 
 .flag {
@@ -144,4 +152,26 @@ h3 {
   margin-left: 4px;
 }
 
+.results {
+    display: flex;
+  flex-wrap: wrap;
+}
+
+.movies-list,
+.tv-shows-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.movie,
+.tv-show {
+  margin-right: 20px; 
+  margin-bottom: 20px; 
+}
+
+hr {
+background-color: rgba(255, 255, 255, 0.402);
+height: 0.1px;
+border: none;
+}
 </style>

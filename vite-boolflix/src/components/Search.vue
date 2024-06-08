@@ -36,32 +36,56 @@ export default {
 
 <template>
   <header>
-<div> <img src="https://edu-boolflix.netlify.app/assets/img/logo.png" alt="Titolo" /> </div>
-<div>
+<div> <img class="logo" src="../../public/logo/logo.png" alt="Titolo" /> </div>
+<div class="search">
     <!-- Barra di ricerca -->
-    <input v-model="query" @keyup.enter="search" placeholder="Cerca un film o una serie tv..." />
-    <button @click="search">Cerca</button>
+    <input v-model="query" @keyup.enter="search" placeholder="Film, Show, Serie TV..." />
+    <button class="custom-button" @click="search">Cerca</button>
 
     <!-- Messaggi di caricamento ed errore -->
     <div v-if="store.loading">Caricamento...</div>
     <div v-if="store.error">{{ store.error }}</div>
 </div>
 
-    
+ 
   </header>
-     
+
 </template>
 
 
 <style scoped>
 
 input {
-  padding: 8px;
+
   margin-right: 8px;
+  padding: 8px 16px; 
+  background-color: #535353cb;  
+  color: white;  
+  border: none; 
+  border-radius: 2px; 
+
 }
 
-button {
-  padding: 8px;
+
+.custom-button {
+  padding: 8px 16px; 
+  background-color: #c30a0a;  
+  color: white;  
+  border: none; 
+  border-radius: 2px; 
+  cursor: pointer; 
+
 }
 
+.custom-button:hover {
+  background-color: #550505;  
+}
+
+.search {
+  margin: 0px 20px;
+}
+
+.logo {
+  width: 250px;
+}
 </style>
